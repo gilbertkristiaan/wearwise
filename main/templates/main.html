@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background-color: rgb(244, 244, 244);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .header {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 3rem;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            border: 2px solid black;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .copyright {
+            text-align: center;
+            margin: 10px 0;
+        }
+	
+        .all-container {
+            position: relative;
+            top: 2rem;
+            width: 50%;
+            margin: 0 auto;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wearwise | Wear the Trend</title>
+</head>
+<body>
+    <h1 class="header">Selamat Datang di <mark style="background-color: purple; color: rgb(251, 0, 0);">{{ brand }}!</mark></h1>
+        <div class ="all-container">
+	<div class="container">
+            <h5>Nama Baju : </h5>
+            <p>{{ name }}</p>
+            <h5>Harga : </h5>
+            <p>{{ price }}</p>
+            <h5>Description : </h5>
+            <p>{{ description }}</p>
+            <h5>Quantity :</h5>
+            <p>{{ quantity }}</p>
+        </div>
+        <p class="copyright">Copyright by Wearwise - {{ myname }} - {{ kelas }}</p>
+	</div<
+</body>
+</html>
