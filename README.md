@@ -1,11 +1,14 @@
 
 ## Gilbert Kristian - 2306274951 - PBP D (TUGAS 2)
 
+:link: [Click Me - Link PWS](https://gilbert-kristian-newwearwise.pbp.cs.ui.ac.id/)
+
+
  - Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
     
     JAWAB : 
     
-    Langkah-langkahnya adalah sebagai berikut:
+    Langkah-langkah yang saya lakukan dalam implementasi checklist adalah sebagai berikut:
     
        1. Membuat sebuah repository lokal dengan nama project "Wearwise" 
        2. Menjalankan "django-admin startproject wear_wise ." untuk memulai project
@@ -101,20 +104,16 @@
     
    Git dapat membantu dalam pengembangan perangkat lunak yang memungkinkan banyak pengembang untuk bekerja sama dan dapat mudah untuk melacak perubahan dalam kode. Fitur yang paling berguna dalam pengembangan perangkat lunak di git adalah branch. Dengan menyediakan mekanisme branch, Git memudahkan kolaborasi antarpengembang sehingga banyak orang dapat bekerja pada fitur yang berbeda secara bersamaan tanpa terjadi konflik. Pengembang bisa membuat branch baru untuk setiap fitur atau bug fix dan menggabungkannya setelah selesai.
 
-   Git juga berfungsi sebagai berikut untuk pengembangan perangkat lunak:
-   1. Versi Kontrol: Git memungkinkan tim pengembang untuk melacak perubahan pada kode sumber secara sistematis. Setiap perubahan yang dilakukan pada proyek tersimpan dalam commit sehingga memudahkan untuk melihat riwayat perubahan dan memulihkan versi sebelumnya jika terjadi masalah.
+   Beberapa manfaat lain git dalam pengembangan perangkat lunak:
+   1. Versi Kontrol: Git membantu tim pengembang memantau perubahan kode sumber. Setiap perubahan yang dilakukan pada proyek disimpan dalam commit sehingga memungkinkan para pengembang melihat riwayat perubahan dan memulihkan versi sebelumnya jika terjadi masalah.
 
-   2. Kolaborasi Tim: Git memungkinkan beberapa pengembang untuk bekerja secara bersamaan pada proyek yang sama tanpa mengganggu pekerjaan satu sama lain. Dengan cabang (branch), setiap pengembang bisa mengerjakan fitur atau perbaikan secara terpisah sebelum menggabungkannya kembali ke cabang utama (main branch).
+   2. Pemulihan Kesalahan: Git menyimpan semua aktivitas proyek sehingga mudah untuk menemukan dan memperbaiki kesalahan tanpa kehilangan pekerjaan penting dan memungkinkan pengembang untuk memutar kembali proyek ke versi sebelumnya jika terjadi bug atau kesalahan.
 
-   3. Manajemen Cabang: Dengan Git, pengembang dapat membuat cabang untuk mengembangkan fitur baru, memperbaiki bug, atau menguji ide eksperimental tanpa mengganggu kode di cabang utama. Cabang ini bisa digabungkan kembali jika sudah stabil atau dihapus jika tidak lagi diperlukan.
+   3. Penyimpanan Terdistribusi: Git menggunakan pendekatan terdistribusi yang memungkinkan setiap pengembang memiliki salinan lengkap dari riwayat proyek secara keseluruhan dan juga pengembang dapat melanjutkan pekerjaan secara lokal tanpa koneksi internet, serta bisa mensinkronisasi perubahan ke server pusat kapanpun diperlukan.
 
-   4. Pemulihan Kesalahan: Git memungkinkan pengembang untuk memutar kembali proyek ke versi sebelumnya jika terjadi bug atau kesalahan. Setiap commit menyimpan snapshot dari proyek, sehingga mudah untuk menemukan dan memperbaiki kesalahan tanpa kehilangan pekerjaan penting.
+   4. Integrasi Berkelanjutan (CI/CD): Git sering digunakan dengan alat integrasi berkelanjutan (CI) dan pengiriman berkelanjutan (CD) untuk menguji dan mengirimkan kode secara otomatis setiap kali perubahan di-push yang akan mempercepat siklus pengembangan dan membantu menemukan kesalahan lebih awal.
 
-   5. Penyimpanan Terdistribusi: Git menggunakan pendekatan terdistribusi, di mana setiap pengembang memiliki salinan lengkap dari seluruh riwayat proyek. Ini berarti pekerjaan bisa dilanjutkan secara lokal tanpa koneksi internet, dan pengembang dapat menyinkronkan perubahan ke server pusat kapan pun diperlukan.
-
-   6. Integrasi Berkelanjutan (CI/CD): Git sering digunakan dengan alat integrasi berkelanjutan (CI) dan pengiriman berkelanjutan (CD) untuk secara otomatis menguji dan mengirimkan kode setiap kali ada perubahan yang di-push. Hal ini membantu mendeteksi kesalahan lebih awal dan mempercepat siklus pengembangan.
-
-   7. Open Source dan Kolaborasi Global: Git adalah alat open-source yang banyak digunakan di berbagai proyek perangkat lunak, termasuk proyek open-source besar. Platform seperti GitHub dan GitLab memungkinkan pengembang dari seluruh dunia untuk berkontribusi ke dalam satu proyek secara mudah.
+   5. Open Source : Git adalah tools open-source yang populer di banyak proyek perangkat lunak, termasuk proyek open-source besar. Platform seperti GitHub akan mempermudah pengembang dari seluruh dunia untuk berkontribusi pada proyek.
 
 - Menurut Anda, dari semua framework yang ada, mengapa framework Django dijadikan permulaan pembelajaran pengembangan perangkat lunak?
     
