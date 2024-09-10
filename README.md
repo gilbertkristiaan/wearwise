@@ -10,28 +10,100 @@
     
     Langkah-langkah yang saya lakukan dalam implementasi checklist adalah sebagai berikut:
     
-       1. Membuat sebuah repository lokal dengan nama project "Wearwise" 
-       2. Menjalankan "django-admin startproject wear_wise ." untuk memulai project
-       3. Menambahkan "localhost", "127.0.0.1" ke dalam list ALLOWED_HOSTS di file settings.py untuk keperluan deployment
-       4. Membuat aplikasi baru dengan nama main dengan menjalankan command "python manage.py startapp main"
-       5. Mendaftarkan 'main' ke dalam INSTALLED_APPS di settings.py pada direktori wear_wise
-       6. Membuat direktori baru di dalam direktori main bernama templates untuk membuat main.html
-       7. Membuat model pada aplikasi main dengan nama product yang memiliki atribut name, price, description.
-       8. Membuat migrasi model dengan menjalankan "python manage.py makemigrations" untuk menyesuaikan struktur tabel database 
-       berdasarkan perubahan model yang telah ditentukan dalam kode.
-       9. Menghubungkan views.py pada direktori main dengan template, fungsi ini akan mengatur permintaan HTTP dan mengembalikan 
-       nama aplikasi, nama, dan kelas.
-       10. Membuat routing dengan membuat file urls.py di aplikasi main untuk memetakan fungsi yang telah dibuat di views.py 
-       dengan membuat urlpatterns = [path('', show_main, name='show_main'),]
-       11. Membuat routing di file urls.py di direktori wear_wise dengan membuat urlpatterns = [path('', include('main.urls')),] 
-       yang akan mengimpor rute URL dari aplikasi
-       12. Men-deploy ke PWS agar dapat diakses publik, lalu meletakkan URL PWS ke ALLOWED_HOSTS di settings.py
+1. Membuat sebuah repository lokal dengan nama project "Wearwise"
+
+2. Menjalankan "django-admin startproject wear_wise ." untuk memulai project
+
+3. Menambahkan "localhost", "127.0.0.1" ke dalam list ALLOWED_HOSTS di file settings.py untuk keperluan deployment
+
+   ```python
+   ALLOWED_HOSTS = ["localhost", "127.0.0.1", ]
+   ``` 
+4. Membuat aplikasi baru dengan nama main dengan menjalankan command "python manage.py startapp main"
+
+5. Mendaftarkan 'main' ke dalam INSTALLED_APPS di settings.py pada direktori wear_wise
+   ```python
+   INSTALLED_APPS = [
+   'django.contrib.admin',
+   'django.contrib.auth',
+   'django.contrib.contenttypes',
+   'django.contrib.sessions',
+   'django.contrib.messages',
+   'django.contrib.staticfiles',
+   'main'
+   ]
+   ``` 
+6. Membuat direktori baru di dalam direktori main bernama templates untuk membuat main.html
+
+7. Membuat model pada aplikasi main dengan nama product yang memiliki atribut name, price, description.
+
+   ```python
+   from django.db import models
+
+   class Product(models.Model):
+   name = models.CharField(max_length=100)
+   price = models.IntegerField()
+   description = models.TextField()
+   quantity = models.IntegerField(default=0)
+
+   @property
+   def __str__(self):
+      return self.name
+   ``` 
+8. Membuat migrasi model dengan menjalankan "python manage.py makemigrations" untuk menyesuaikan struktur tabel database 
+berdasarkan perubahan model yang telah ditentukan dalam kode.
+
+9. Menghubungkan views.py pada direktori main dengan template, fungsi ini akan mengatur permintaan HTTP dan mengembalikan 
+nama aplikasi, nama, dan kelas.
+   ```python
+   from django.db import models
+
+   class Product(models.Model):
+   name = models.CharField(max_length=100)
+   price = models.IntegerField()
+   description = models.TextField()
+   quantity = models.IntegerField(default=0)
+
+   @property
+   def __str__(self):
+      return self.name
+   ``` 
+
+10. Membuat _routing_ dengan membuat file urls.py di aplikasi main untuk memetakan fungsi yang telah dibuat di views.py 
+dengan membuat urlpatterns = [path('', show_main, name='show_main'),]
+      ```python
+      from django.urls import path
+      from main.views import show_main
+
+      app_name = 'main'
+
+      urlpatterns = [
+         path('', show_main, name='show_main'),
+      ]
+      ```
+
+11. Membuat _routing_ di file urls.py di direktori wear_wise dengan membuat urlpatterns = [path('', include('main.urls')),] 
+yang akan mengimpor rute URL dari aplikasi.
+      ```python
+      from django.contrib import admin
+      from django.urls import path, include 
+
+      urlpatterns = [
+         path('admin/', admin.site.urls),
+         path('', include('main.urls')),
+      ]
+      ```
+
+12. Men-deploy ke PWS agar dapat diakses _public_, lalu meletakkan URL PWS ke ALLOWED_HOSTS di settings.py
+      ```python
+      ALLOWED_HOSTS = ["localhost", "127.0.0.1", "gilbert-kristian-newwearwise.pbp.cs.ui.ac.id"]
+      ```
 
  - Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
     
     Jawab :
-   ```mermaid
-   sequenceDiagram
+```mermaid
+sequenceDiagram
       participant Client
       participant Internet
       participant manage.py
@@ -56,22 +128,13 @@
 
       Note right of urls.py: urls.py mengarahkan URL ke view yang relevan
 
-      views.py->>models.py: Mengambil data dari model (jika diperlukan)
-      activate models.py
+      %% models.py belum dipanggil karena belum diimplementasikan
+      models.py-->>views.py: (Belum ada peran dari models.py)
 
-      models.py->>DB: Query ke database
-      activate DB
-
-      DB-->>models.py: Mengirimkan data ke model
-      deactivate DB
-
-      models.py-->>views.py: Data dari database kembali ke views
-      deactivate models.py
-
-      views.py->>main.html: Render halaman HTML dengan data
+      views.py->>main.html: Render halaman HTML tanpa data dari models
       activate main.html
 
-      Note right of views.py: views.py mengisi template HTML dengan data dari model
+      Note right of views.py: views.py mengisi template HTML tanpa interaksi dengan model
 
       main.html-->>views.py: Halaman HTML yang sudah dirender
       deactivate main.html
@@ -85,17 +148,17 @@
       Internet-->>Client: Kirim halaman web ke Client
 
       Note over Client,Internet: Client menerima halaman HTML yang dirender dari server Django
+
 ```
-```
+
 
    Penjelasan alur bagan :
    1. Client meminta halaman web, kemudian permintaan ini diteruskan oleh Internet ke server Django, yaitu manage.py.
    2. manage.py menerima permintaan dan meneruskannya ke urls.py, yang bertugas memetakan URL yang diminta ke fungsi yang sesuai di views.py.
    3. urls.py mengarahkan permintaan ke fungsi yang relevan di views.py. Di sini, views.py dapat meminta data dari models.py jika diperlukan.
-   4. models.py mengirimkan query ke DB (database) untuk mendapatkan data yang relevan. Setelah data diambil, DB mengembalikannya ke models.py, yang kemudian meneruskannya ke views.py.
-   5. Setelah menerima data dari model, views.py merender halaman HTML dengan mengisi template yang relevan (diwakili oleh main.html).
-   6. main.html mengembalikan halaman yang telah dirender ke views.py, yang kemudian mengirimkan hasilnya ke manage.py.
-   7. manage.py mengirimkan respons halaman HTML yang dirender kembali ke Client melalui Internet, yang akhirnya memungkinkan Client untuk menampilkan halaman web di browser.
+   4. views.py merender halaman HTML dengan mengisi template yang relevan (diwakili oleh main.html).
+   5. main.html mengembalikan halaman yang telah dirender ke views.py, yang kemudian mengirimkan hasilnya ke manage.py.
+   6. manage.py mengirimkan respons halaman HTML yang dirender kembali ke Client melalui Internet, yang akhirnya memungkinkan Client untuk menampilkan halaman web di browser.
 
 
 - Jelaskan fungsi git dalam pengembangan perangkat lunak!
