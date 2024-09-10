@@ -50,7 +50,7 @@
    def __str__(self):
       return self.name
    ``` 
-8. Membuat migrasi model dengan menjalankan "python manage.py makemigrations" untuk menyesuaikan struktur tabel database 
+8. Membuat migrasi model dengan menjalankan "python manage.py makemigrations" & "python manage.py migrate" untuk menyesuaikan struktur tabel database 
 berdasarkan perubahan model yang telah ditentukan dalam kode.
 
 9. Menghubungkan views.py pada direktori main dengan template, fungsi ini akan mengatur permintaan HTTP dan mengembalikan 
