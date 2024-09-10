@@ -35,7 +35,7 @@
    ``` 
 6. Membuat direktori baru di dalam direktori main bernama templates untuk membuat main.html
 
-7. Membuat model pada aplikasi main dengan nama product yang memiliki atribut name, price, description.
+7. Membuat model pada aplikasi main dengan nama product yang memiliki atribut name, price, description, dan quantity.
 
    ```python
    from django.db import models
