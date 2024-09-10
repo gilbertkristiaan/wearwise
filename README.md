@@ -154,11 +154,11 @@ sequenceDiagram
 
    Penjelasan alur bagan :
    1. Client meminta halaman web, kemudian permintaan ini diteruskan oleh Internet ke server Django, yaitu manage.py.
-   2. manage.py menerima permintaan dan meneruskannya ke urls.py, yang bertugas memetakan URL yang diminta ke fungsi yang sesuai di views.py.
-   3. urls.py mengarahkan permintaan ke fungsi yang relevan di views.py. Di sini, views.py dapat meminta data dari models.py jika diperlukan.
+   2. manage.py menerima permintaan dan meneruskannya ke urls.py yang bertugas memetakan URL yang diminta ke fungsi yang sesuai di views.py.
+   3. urls.py mengarahkan permintaan ke fungsi yang relevan di views.py; views.py dapat meminta data dari models.py jika diperlukan.
    4. views.py merender halaman HTML dengan mengisi template yang relevan (diwakili oleh main.html).
-   5. main.html mengembalikan halaman yang telah dirender ke views.py, yang kemudian mengirimkan hasilnya ke manage.py.
-   6. manage.py mengirimkan respons halaman HTML yang dirender kembali ke Client melalui Internet, yang akhirnya memungkinkan Client untuk menampilkan halaman web di browser.
+   5. main.html mengembalikan halaman yang telah dirender ke views.py yang kemudian mengirimkan hasilnya ke manage.py.
+   6. manage.py mengirimkan respons halaman HTML yang dirender kembali ke Client melalui Internet yang akhirnya memungkinkan Client untuk menampilkan halaman web di browser.
 
 
 - Jelaskan fungsi git dalam pengembangan perangkat lunak!
