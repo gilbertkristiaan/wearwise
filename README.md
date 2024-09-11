@@ -1,7 +1,7 @@
 
 ## Gilbert Kristian - 2306274951 - PBP D (TUGAS 2)
 
-:link: [Click Me - Link PWS](https://gilbert-kristian-newwearwise.pbp.cs.ui.ac.id/)
+:link: [Click Me - Link PWS](http://gilbert-kristian-newwearwise.pbp.cs.ui.ac.id/)
 
 
  - Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
