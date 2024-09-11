@@ -133,7 +133,7 @@ sequenceDiagram
       views.py->>main.html: Render halaman HTML tanpa data dari models
       activate main.html
 
-      Note right of views.py: views.py mengisi template HTML tanpa interaksi dengan model, melainkan menggunakan data model yang telah ditentukan sebelumnya di show_main
+      Note right of views.py: menggunakan data model yang telah ditentukan sebelumnya di show_main
 
       main.html-->>views.py: Halaman HTML yang sudah dirender
       deactivate main.html
