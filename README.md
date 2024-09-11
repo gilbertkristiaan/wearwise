@@ -129,7 +129,6 @@ sequenceDiagram
       Note right of urls.py: urls.py mengarahkan URL ke view yang relevan
 
       %% models.py belum dipanggil karena belum diimplementasikan
-      models.py-->>views.py: (Belum ada peran dari models.py)
 
       views.py->>main.html: Render halaman HTML tanpa data dari models
       activate main.html
