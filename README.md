@@ -368,13 +368,13 @@ sequenceDiagram
    11. _Screenshot_ Postman:
 
          a. `show_xml()`
-         ![](./postman/1.png)
+         ![](./ss/1.png)
 
          b. `show_json()`
-         ![](./postman/2.png)
+         ![](./ss/2.png)
 
          c.`show_xml_by_id()`
-         ![](./postman/3.png)
+         ![](./ss/3.png)
          
          d.`show_json_by_id()`
-         ![](./postman/3.png)
+         ![](./ss/3.png)
