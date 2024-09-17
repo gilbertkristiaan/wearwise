@@ -1,9 +1,9 @@
 
 ## Gilbert Kristian - 2306274951 - PBP D 
 
-:link: [Click Me - Link Web](http://gilbert-kristian-wearwise.pbp.cs.ui.ac.id/)
+:link: [Click Me - Link Web](http://gilbert-kristian-wearwise.pbp.cs.ui.ac.id/), [Click Me - Tugas 2](#:nerd_face:Tugas--2), [Click Me - Tugas 3](#:cold_face:Tugas--3 )
 
-## :nerd_face: Tugas 2 - Implementasi Model-View-Template (MVT) pada Django
+## :nerd_face:Tugas—2
  - Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
     
     JAWAB : 
@@ -181,7 +181,7 @@ sequenceDiagram
     Django disebut sebagai Object Relational Mapping karena penggunaan ORM di Django memungkinkan pengembang untuk berinteraksi dengan database menggunakan kode Python tanpa menulis SQL secara manual. Django akan mengubah objek Python (model) menjadi tabel di database. Setiap atribut model diubah menjadi kolom dalam tabel. 
 
 
-## :cold_face: Tugas 3 - Implementasi _Form_ dan _Data Delivery_ pada Django
+## :cold_face:Tugas—3 
 - Jelaskan mengapa kita memerlukan _data delivery_ dalam pengimplementasian sebuah platform?
 
    Jawab : 
@@ -264,7 +264,7 @@ sequenceDiagram
 
       ```python
       def create_product(request):
-      form = MoodEntryForm(request.POST or None)
+      form = ProductForm(request.POST or None)
 
       if form.is_valid() and request.method == "POST":
          form.save()
@@ -329,8 +329,52 @@ sequenceDiagram
       {% endblock content %}
       ```
    
-   9. 
+   9. Menambahkan empat buah fungsi pada views.py di main yang masing-masing akan mengembalikan respons `XML, XML/[id], JSON, dan JSON/[id]`. 
 
+      ```python
+      def show_xml(request):
+      data = Product.objects.all()
+      return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+      def show_json(request):
+         data = Product.objects.all()
+         return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+      def show_xml_by_id(request, id):
+         data = Product.objects.filter(pk=id)
+         return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+      def show_json_by_id(request, id):
+         data = Product.objects.filter(pk=id)
+         return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+      ```
    
+   10. Menambahkan _routing_ URL untuk masing-masing fungsi tersebut di urls.py di direktori main.
+         ```python
+         from django.urls import path
+         from main.views import show_main, create_product, show_xml, show_json, show_xml_by_id, show_json_by_id
 
+         app_name = 'main'
 
+         urlpatterns = [
+            path('', show_main, name='show_main'), 
+            path('create-product', create_product, name='create_product'),
+            path('xml/', show_xml, name='show_xml'),
+            path('json/', show_json, name='show_json'),
+            path('xml/<str:id>/', show_xml_by_id, name='show_xml_by_id'),
+            path('json/<str:id>/', show_json_by_id, name='show_json_by_id'),
+         ]
+         ```
+   11. _Screenshot_ Postman:
+
+         a. `show_xml()`
+         ![](./postman/1.png)
+
+         b. `show_json()`
+         ![](./postman/2.png)
+
+         c.`show_xml_by_id()`
+         ![](./postman/3.png)
+         
+         d.`show_json_by_id()`
+         ![](./postman/3.png)

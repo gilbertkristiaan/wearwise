@@ -1,48 +1,103 @@
 {% extends 'base.html' %}
 {% block content %}
     <title>Wearwise | Wear the Trend</title>
-    <body style="font-family: sans-serif;">
-        <h1>Selamat Datang di <mark style="background-color: purple; color: rgb(251, 0, 0);">{{ brand }}!</mark></h1>
-                <h5>Nama Produk : </h5>
-                <p>{{ name }}</p>
-                <h5>Harga : </h5>
-                <p>Rp{{ price }}</p>
-                <h5>Description : </h5>
-                <p>{{ description }}</p>
-                <h5>Quantity :</h5>
-                <p>{{ quantity }}</p>
-            </div>
-            <p>Copyright by Wearwise - {{ myname }} - {{ kelas }}</p>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ededed;
+        }
 
-        {% if not products %}
-        <p>Belum ada data produk tambahan yang ditambahkan di wearwise.</p>
-        {% else %}
-        <table>
-            <tr>
-            <th>Nama Produk</th>
-            <th>Harga</th>
-            <th>Deskripsi Produk</th>
-            <th>Kuantitas</th>
-            </tr>
+        .container {
+            border: 2px solid black;
+            text-align: center;
+            border-radius: 20px;
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+        }
 
-            {% comment %} Berikut cara memperlihatkan data mood di bawah baris ini 
-            {% endcomment %} 
-            {% for product in products %}
-            <tr>
-            <td style="text-align: center;">{{product.name}}</td>
-            <td style="text-align: center;">{{product.price}}</td>
-            <td style="text-align: center;">{{product.description}}</td>
-            <td style="text-align: center;">{{product.quantity}}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        {% endif %}
+        h1 mark {
+            background-color: purple;
+            color: rgb(251, 0, 0);
+        }
 
-        <br />
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            table-layout: fixed; 
+        }
 
-        <a href="{% url 'main:create_product' %}">
-            <button>Tambahkan Produk</button>
-        </a>
-    </div>
-        </body>
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            word-wrap: break-word; 
+        }
+
+        table th {
+            background-color: #f4f4f4;
+        }
+
+        button {
+            border-radius: 10px;
+            background-color: purple;
+            font-weight: bold;
+            color: red;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s; 
+        }
+
+        button:hover {
+            background-color: darkviolet;
+        }
+    </style>
+    <body>
+        <div class="container">
+            <h1>Selamat Datang di <mark>{{ brand }}!</mark></h1>
+            {% if not products %}
+            <p>Belum ada data produk tambahan yang ditambahkan di wearwise.</p>
+            {% else %}
+            <table>
+                <tr>
+                    <th>Nama Produk</th>
+                    <th>Harga</th>
+                    <th>Deskripsi Produk</th>
+                    <th>Kuantitas</th>
+                </tr>
+                {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>Rp{{ product.price }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.quantity }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+            <a href="{% url 'main:create_product' %}">
+                <button>Tambahkan Produk</button>
+            </a>
+        </div>
+    </body>
 {% endblock content %}
+
+<!-- <h5>Nama Produk : </h5>
+<p>{{ name }}</p>
+<h5>Harga : </h5>
+<p>Rp{{ price }}</p>
+<h5>Description : </h5>
+<p>{{ description }}</p>
+<h5>Quantity :</h5>
+<p>{{ quantity }}</p> -->
