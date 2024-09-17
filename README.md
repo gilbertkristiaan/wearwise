@@ -1,9 +1,13 @@
 
 ## Gilbert Kristian - 2306274951 - PBP D 
 
-:link: [Click Me - Link Web](http://gilbert-kristian-wearwise.pbp.cs.ui.ac.id/), [Click Me - Tugas 2](#:nerd_face:Tugas--2), [Click Me - Tugas 3](#:cold_face:Tugas--3 )
+:link: [Click Me - Link Web](http://gilbert-kristian-wearwise.pbp.cs.ui.ac.id/)
 
-## :nerd_face:Tugas—2
+[Click Me - Tugas 2](#Tugas-2)
+
+[Click Me - Tugas 3](#Tugas-3)
+
+## Tugas-2
  - Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
     
     JAWAB : 
@@ -181,7 +185,7 @@ sequenceDiagram
     Django disebut sebagai Object Relational Mapping karena penggunaan ORM di Django memungkinkan pengembang untuk berinteraksi dengan database menggunakan kode Python tanpa menulis SQL secara manual. Django akan mengubah objek Python (model) menjadi tabel di database. Setiap atribut model diubah menjadi kolom dalam tabel. 
 
 
-## :cold_face:Tugas—3 
+## Tugas-3 
 - Jelaskan mengapa kita memerlukan _data delivery_ dalam pengimplementasian sebuah platform?
 
    Jawab : 
