@@ -2,23 +2,86 @@
 {% block content %}
 <style>
     body {
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
         font-family: sans-serif;
+        background-color: #f0f0f0;
     }
-    
-</style>
-<h1>Tambahkan Produk Wearwise</h1>
 
-<form method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-        <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="Add Product">
-            </td>
-        </tr>
-    </table>
-</form>
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+    }
+
+    h1 {
+        color: #333;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    input[type="submit"] {
+        background-color: #aa00fffc;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 1rem;
+    }
+
+
+    td {
+        padding: 10px 0;
+    }
+
+    @media (max-width: 600px) {
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        .container {
+            padding: 15px;
+        }
+
+        input[type="submit"] {
+            font-size: 0.9rem;
+        }
+    }
+</style>
+
+<div class="container">
+    <h1>Tambahkan Produk Wearwise</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Add Product">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
 {% endblock content %}
