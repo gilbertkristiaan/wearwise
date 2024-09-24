@@ -59,6 +59,10 @@
             transition: background-color 0.3s; 
         }
 
+        a {
+            text-decoration: none;
+        }
+
         button:hover {
             background-color: darkviolet;
         }
@@ -89,6 +93,11 @@
             <a href="{% url 'main:create_product' %}">
                 <button>Tambahkan Produk</button>
             </a>
+            <a href="{% url 'main:logout' %}">
+                <button>Logout</button>
+              </a>
+            <h5>Halo, <u>@{{ usname }}!</u></h5>
+            <h5>Sesi terakhir login: {{ last_login }}</h5>
         </div>
     </body>
 {% endblock content %}
