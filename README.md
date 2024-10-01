@@ -692,7 +692,8 @@ sequenceDiagram
             }
             ```
       3. _Class Selector_
-      Contoh :
+            
+            Contoh :
             ```CSS
             .class-name {
                background-color: green;
@@ -700,7 +701,8 @@ sequenceDiagram
             ```
 
       4. _Tag Selector_
-      Contoh : 
+            
+            Contoh : 
             ```CSS
             p {
                font-family: Arial;
@@ -708,7 +710,8 @@ sequenceDiagram
             ```
 
       5. _Universal Selector_, _Combinator_
-      Contoh :
+            
+            Contoh :
             ```CSS
             * {
                color: black;
