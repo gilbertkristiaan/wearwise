@@ -742,9 +742,9 @@ sequenceDiagram
 
          - _Padding_: area di dalam border yang membuat ruang antara _content_ dan _border_.
 
-         - _Border_: Garis di sekitar elemen yang membatasi padding dan margin.
+         - _Border_: garis di sekitar elemen yang membatasi _padding_ dan _margin_.
 
-         - _Margin_: Area di luar border yang membuat ruang antarelemen dengan elemen lain.
+         - _Margin_: area di luar _border_ yang membuat ruang antarelemen dengan elemen lain.
 
          Contoh Implementasi : 
          ```CSS
@@ -777,7 +777,7 @@ sequenceDiagram
 
          JAWAB :
          
-         1.  Menambahkan _middleware_ di `settings.py`
+         1.  Menambahkan _whitenoise middleware_ di `settings.py`
                ```python
                MIDDLEWARE = [
                'django.middleware.security.SecurityMiddleware',
@@ -799,7 +799,7 @@ sequenceDiagram
 
          6. Melakukan kustomisasi menggunakan _framework_ _Tailwind_  pada _file_ `login.html`, `register.html`, `create_product.html`, `card-product.html`, `edit_product.html`, dan `main.html`.
 
-         7. Membuat `navbar.html` yang nanti akan di-_include_ di semua _page_, kecuali `login.html`
+         7. Membuat `navbar.html` di _folder_ `templates` di _root folder_ yang nanti akan di-_include_ di semua _page_, kecuali `login.html`
 
 
 
