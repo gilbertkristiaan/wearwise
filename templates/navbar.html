@@ -1,0 +1,30 @@
+<nav class="bg-white shadow-md w-full fixed top-0 left-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-2 flex justify-between items-center">
+        <a href="{% url 'main:show_main' %}">
+            <div class="text-xl font-bold text-purple-600">Wearwise</div>
+        </a>
+        <div class="hidden md:flex space-x-2">
+            <a href="{% url 'main:create_product' %}" class="px-4 py-2 bg-purple-600 text-white rounded">Tambahkan Produk</a>
+            <a href="{% url 'main:logout' %}" class="px-4 py-2 bg-red-600 text-white rounded">Logout</a>
+        </div>
+        <div class="md:hidden">
+            <button id="menu-toggle" class="text-gray-700 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </div>
+    <!-- Hamburger Menu -->
+    <div id="menu" class="hidden md:hidden">
+        <a href="{% url 'main:create_product' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Tambahkan Produk</a>
+        <a href="{% url 'main:logout' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Logout</a>
+    </div>
+</nav>
+<!-- Script untuk men-toggle menu hamburger -->
+<script>
+    document.getElementById('menu-toggle').addEventListener('click', function () {
+        const menu = document.getElementById('menu');
+        menu.classList.toggle('hidden');
+    });
+</script>

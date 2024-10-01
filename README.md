@@ -1,7 +1,7 @@
 
 ## Gilbert Kristian - 2306274951 - PBP D 
 
-Click Me
+Click Me:
 
 - :link: [Link Web](http://gilbert-kristian-wearwise.pbp.cs.ui.ac.id/)
 
@@ -10,6 +10,8 @@ Click Me
 - :books: [Tugas 3](#Tugas-3)
 
 - :books: [Tugas 4](#Tugas-4)
+
+- :books: [Tugas 5](#Tugas-5)
 
 ## Tugas-2
  - Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
@@ -667,6 +669,142 @@ sequenceDiagram
             <h5>Sesi terakhir login: {{ last_login }}</h5>
             ``` 
 
+## Tugas-5
+
+ 1. Jika terdapat beberapa CSS _selector_ untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS _selector_ tersebut!
+
+      JAWAB :
+
+      Urutan prioritas pengambilan CSS  berdasarkan urutan yang tertinggi:
+      1. _Inline Styles_
+      
+            Contoh : 
+            ```CSS
+            p style="color: yellow;"
+            ```
+
+      2. _ID Selector_
+      
+            Contoh : 
+            ```CSS
+            #header {
+               color: blue;
+            }
+            ```
+      3. _Class Selector_
+      Contoh :
+            ```CSS
+            .class-name {
+               background-color: green;
+            }
+            ```
+
+      4. _Tag Selector_
+      Contoh : 
+            ```CSS
+            p {
+               font-family: Arial;
+            }
+            ```
+
+      5. _Universal Selector_, _Combinator_
+      Contoh :
+            ```CSS
+            * {
+               color: black;
+            }
+
+            p > a {
+               color: green;
+            }
+            ```
+   2. Mengapa _responsive design_ menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan _responsive design_!
+
+      JAWAB :
+
+      _Responsive design_ sangat penting karena dapat membuat _web_ menyesuaikan tampilannya sesuai dengan ukuran layar perangkat karena pengguna bisa saja menggunakan berbagai perangkat yang berbeda seperti _handphone_, _tablet_, ataupun _Smart TV_.
+
+      Contoh yang sudah menerapkan _responsive design_ :
+      1. YouTube
+      2. Tokopedia
+
+      Contoh yang belum menerapkan _responsive design_:
+      
+      1. Beberapa _Website-website_ yang di-_deploy_ di PWS (Sebelum Tugas 5, banyak _website_ belum bersifat _responsive_)
+      2. SIAK-NG
+
+   3.  Jelaskan perbedaan antara _margin, border, _dan_ padding_, serta cara untuk mengimplementasikan ketiga hal tersebut!
+
+         JAWAB :
+
+         - _Padding_: area di dalam border yang membuat ruang antara _content_ dan _border_.
+
+         - _Border_: Garis di sekitar elemen yang membatasi padding dan margin.
+
+         - _Margin_: Area di luar border yang membuat ruang antarelemen dengan elemen lain.
+
+         Contoh Implementasi : 
+         ```CSS
+         .my-class {
+            margin: 0;
+            padding: 10px;
+            border: 10px solid black; 
+         }
+         ```
+   4.  Jelaskan konsep _flex box_ dan _grid layout_ beserta kegunaannya!
+   
+         JAWAB :
+
+         _Flexbox_ adalah layout yang dapat mengatur elemen dalam satu dimensi, baik secara horizontal (baris) maupun vertikal (kolom) sehingga memudahkan pembuatan _layout_ yang fleksibel dan responsif.
+         Flexbox juga memberikan kontrol ruang antarelemen pada sebuah _container _fleksibel.
+
+         Kegunaan _Flexbox_:
+         - Mengatur tata letak satu dimensi, seperti membuat deretan tombol, menyusun gambar secara horizontal, atau menyusun _form input_.
+         
+         - Sangat fleksibel untuk tata letak yang memerlukan perataan dinamis, seperti navbar horizontal atau layout yang responsif.
+
+         _Grid Layout_ adalah model layout dua dimensi yang memungkinkan mengatur desain dan elemen-elemen lebih kompleks dalam baris dan kolom. _Grid Layout_ akan membuat elemen berada di sebuah struktur _grid_.
+
+         Kegunaan _Grid Layout_ : 
+         - _Grid_ cocok untuk _layout web_ dua dimensi, seperti membuat halaman web yang kompleks dengan berbagai bagian _(header, sidebar, content, footer)._
+   
+         - Memungkinkan kontrol yang lebih presisi karena pembagian _layout area_ sangat jelas.
+ 
+   5.  Jelaskan bagaimana cara kamu mengimplementasikan _checklist_ di atas secara _step-by-step_ (bukan hanya sekadar mengikuti _tutorial_)!
+
+         JAWAB :
+         
+         1.  Menambahkan _middleware_ di `settings.py`
+               ```python
+               MIDDLEWARE = [
+               'django.middleware.security.SecurityMiddleware',
+               'whitenoise.middleware.WhiteNoiseMiddleware',]
+               ```
+         2. Menambahkan kode berikut di `settings.py`
+               ```python
+               STATIC_URL = '/static/'
+               if DEBUG:
+                  STATICFILES_DIRS = [BASE_DIR 'static']
+               else:
+                  STATIC_ROOT = BASE_DIR / 'static' 
+               ```
+         3. Membuat fungsi `edit_product` dan `delete_product` di `views.py`, lalu menambahkan _path_-nya ke `urls.py`
+
+         4. Mengubah file `base.html` sebagai _main template_ untuk semua _page_. Lalu, menambahkan _folder_ `static` di _root folder_ dengan subdirektori `css` yang berisi _global.css_ dan subdirektori `image` yang berisi aset gambar.
+
+         5. Membuat _file_ `card-product.html` dan `edit_product.html` di subdirektori `main/templates`
+
+         6. Melakukan kustomisasi menggunakan _framework_ _Tailwind_  pada _file_ `login.html`, `register.html`, `create_product.html`, `card-product.html`, `edit_product.html`, dan `main.html`.
+
+         7. Membuat `navbar.html` yang nanti akan di-_include_ di semua _page_, kecuali `login.html`
+
+
+
+
+
+
+
+   
 
 
 

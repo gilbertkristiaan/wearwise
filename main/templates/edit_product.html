@@ -3,27 +3,27 @@
 {% block content %}
 {% include 'navbar.html' %}
 <div class="flex justify-center items-center min-h-screen bg-gray-100 p-2">
-    <div class="flex flex-col items-center bg-white p-3 rounded-lg shadow-lg max-w-xs w-full">
-        <h1 class="text-xl font-semibold text-center text-gray-800 mb-3">Tambahkan Product</h1>
+    <div class="flex flex-col items-center bg-white p-3 rounded-lg shadow-lg max-w-xs w-full"> <!-- Max width dan padding dikurangi -->
+        <h1 class="text-xl font-semibold text-center text-gray-800 mb-3">Edit Product</h1> <!-- Ukuran font dan margin dikurangi -->
 
         <form method="POST" class="w-full">
             {% csrf_token %}
             <table class="w-full">
                 {% for field in form %}
                     <tr>
-                        <td class="py-1">
+                        <td class="py-1"> <!-- Padding vertical dikurangi -->
                             <label for="{{ field.id_for_label }}" class="block text-xs font-medium text-gray-700">{{ field.label }}</label>
                         </td>
-                        <td class="py-1">
-                            <div class="relative mb-2">
+                        <td class="py-1"> <!-- Padding vertical dikurangi -->
+                            <div class="relative mb-2"> <!-- Margin bottom dikurangi -->
                                 {{ field }}
                             </div>
                         </td>
                     </tr>
                 {% endfor %}
                 <tr>
-                    <td colspan="2" class="pt-2">
-                        <input type="submit" value="Add Product" class="w-full bg-purple-600 text-white py-1.5 rounded-lg cursor-pointer hover:bg-purple-700 transition-colors text-sm mb-2">
+                    <td colspan="2" class="pt-2"> <!-- Menggunakan colspan untuk full width -->
+                        <input type="submit" value="Edit Product" class="w-full bg-purple-600 text-white py-1.5 rounded-lg cursor-pointer hover:bg-purple-700 transition-colors text-sm"> <!-- Padding dan ukuran font dikurangi -->
                     </td>
                 </tr>
                 <tr>
@@ -40,11 +40,11 @@
     input[type="text"],
     input[type="number"],
     textarea {
-        border: 1px solid black;
-        border-radius: 0.25rem;
+        border: 1px solid black; /* Border thickness dikurangi */
+        border-radius: 0.25rem; /* Border radius dikurangi */
         width: 100%;
-        padding: 0.25rem;
-        font-size: 0.875rem;
+        padding: 0.25rem; /* Padding dikurangi */
+        font-size: 0.875rem; /* Ukuran font dikurangi */
         transition: border-color 0.2s;
     }
 
