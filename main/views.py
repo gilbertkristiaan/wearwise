@@ -68,6 +68,8 @@ def register(request):
             form.save()
             messages.success(request, 'Anda berhasil membuat akun di wearwise!')
             return redirect('main:login')
+        else:
+            messages.error(request, 'Gagal membuat akun. Pastikan data yang diisi benar.')
     context = {'form':form}
     return render(request, 'register.html', context)
 

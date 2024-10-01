@@ -2,55 +2,65 @@
 
 {% block meta %}
 <title>Register</title>
+<style>
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+        20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+    .error-shake {
+        animation: shake 0.5s;
+        border-color: #EF4444 !important;
+    }
+</style>
 {% endblock meta %}
 
 {% block content %}
 <div class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="login bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
-        <h1 class="text-2xl font-semibold text-center text-gray-800 mb-4">Register</h1>
+    <div class="login bg-white p-4 rounded-lg shadow-lg max-w-xs w-full {% if messages %}error-shake{% endif %}">
+        <h1 class="text-xl font-semibold text-center text-gray-800 mb-3">Register</h1>
 
-        <form method="POST" class="space-y-4">
+        <form method="POST" class="space-y-3">
             {% csrf_token %}
             <div>
                 <label for="username" class="block mb-1 text-sm font-medium text-gray-700">Username:</label>
-                <input type="text" id="username" name="username" required class="block w-full bg-transparent border border-gray-300 py-1.5 px-3 rounded-md focus:outline-none focus:ring focus:ring-purple-500 text-sm" />
-                <p class="text-gray-500 text-xs mt-1">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
+                <input type="text" id="username" name="username" required class="block w-full bg-transparent border border-gray-300 py-1 px-2 rounded-md focus:outline-none focus:ring focus:ring-purple-500 text-xs" />
+                <p class="text-gray-500 text-xs mt-0.5">150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
             </div>
             <div>
                 <label for="password" class="block mb-1 text-sm font-medium text-gray-700">Password:</label>
-                <input type="password" id="password" name="password" required class="block w-full bg-transparent border border-gray-300 py-1.5 px-3 rounded-md focus:outline-none focus:ring focus:ring-purple-500 text-sm" />
-                <p class="text-gray-500 text-xs mt-1">Your password must be at least 8 characters long and meet complexity requirements.</p>
+                <input type="password" id="password" name="password" required class="block w-full bg-transparent border border-gray-300 py-1 px-2 rounded-md focus:outline-none focus:ring focus:ring-purple-500 text-xs" />
+                <p class="text-gray-500 text-xs mt-0.5">At least 8 characters, must meet complexity requirements.</p>
             </div>
             <div>
                 <label for="password_confirmation" class="block mb-1 text-sm font-medium text-gray-700">Confirm Password:</label>
-                <input type="password" id="password_confirmation" name="password_confirmation" required class="block w-full bg-transparent border border-gray-300 py-1.5 px-3 rounded-md focus:outline-none focus:ring focus:ring-purple-500 text-sm" />
+                <input type="password" id="password_confirmation" name="password_confirmation" required class="block w-full bg-transparent border border-gray-300 py-1 px-2 rounded-md focus:outline-none focus:ring focus:ring-purple-500 text-xs" />
             </div>
             <div>
                 <label class="block mb-1 text-sm font-medium text-gray-700">Password-based authentication:</label>
-                <div class="space-y-2">
+                <div class="space-y-1">
                     <div class="flex items-center">
-                        <input type="radio" id="enabled" name="auth_method" value="enabled" class="mr-2" checked>
-                        <label for="enabled" class="text-sm text-gray-700">Enabled</label>
+                        <input type="radio" id="enabled" name="auth_method" value="enabled" class="mr-1" checked>
+                        <label for="enabled" class="text-xs text-gray-700">Enabled</label>
                     </div>
                     <div class="flex items-center">
-                        <input type="radio" id="disabled" name="auth_method" value="disabled" class="mr-2">
-                        <label for="disabled" class="text-sm text-gray-700">Disabled</label>
+                        <input type="radio" id="disabled" name="auth_method" value="disabled" class="mr-1">
+                        <label for="disabled" class="text-xs text-gray-700">Disabled</label>
                     </div>
                 </div>
-                <p class="text-gray-500 text-xs mt-1">Choose whether to enable password-based authentication.</p>
             </div>
             <div>
-                <input type="submit" name="submit" value="Register" class="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition-colors cursor-pointer w-full text-sm mb-2" />
+                <input type="submit" name="submit" value="Register" class="bg-purple-600 text-white py-1.5 px-3 rounded-md hover:bg-purple-700 transition-colors cursor-pointer w-full text-sm mb-1" />
             </div>
             <div>
-                <a href="{% url 'main:show_main' %}" class="block bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition-colors cursor-pointer w-full text-sm text-center">Back</a>
+                <a href="{% url 'main:show_main' %}" class="block bg-red-600 text-white py-1.5 px-3 rounded-md hover:bg-red-700 transition-colors cursor-pointer w-full text-xs text-center">Back</a>
             </div>
         </form>
 
         {% if messages %}
-        <ul class="list-none text-center mt-4">
+        <ul class="list-none text-center mt-3">
             {% for message in messages %}
-            <li class="text-red-500 text-sm">{{ message }}</li>
+            <li class="text-red-500 text-xs">{{ message }}</li>
             {% endfor %}
         </ul>
         {% endif %}
