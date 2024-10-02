@@ -733,8 +733,7 @@ sequenceDiagram
 
       Contoh yang belum menerapkan _responsive design_:
       
-      1. Beberapa _Website-website_ yang di-_deploy_ di PWS (Sebelum Tugas 5, banyak _website_ belum bersifat _responsive_)
-      2. SIAK-NG
+      1. SIAK-NG
 
    3.  Jelaskan perbedaan antara _margin, border, _dan_ padding_, serta cara untuk mengimplementasikan ketiga hal tersebut!
 
