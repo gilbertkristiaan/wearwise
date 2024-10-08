@@ -4,7 +4,10 @@
             <div class="text-xl font-bold text-purple-600">Wearwise</div>
         </a>
         <div class="hidden md:flex space-x-2">
-            <a href="{% url 'main:create_product' %}" class="px-4 py-2 bg-purple-600 text-white rounded">Tambahkan Produk</a>
+            <a href="{% url 'main:create_product' %}" class="px-4 py-2 bg-purple-600 text-white rounded">Add Product</a>
+            <button data-modal-target="crudModal" data-modal-toggle="crudModal" class="px-4 py-2 bg-purple-600 text-white rounded" onclick="showModal();">
+                Add New Product by AJAX
+            </button>
             <a href="{% url 'main:logout' %}" class="px-4 py-2 bg-red-600 text-white rounded">Logout</a>
         </div>
         <div class="md:hidden">
@@ -17,11 +20,15 @@
     </div>
     <!-- Hamburger Menu -->
     <div id="menu" class="hidden md:hidden">
-        <a href="{% url 'main:create_product' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Tambahkan Produk</a>
-        <a href="{% url 'main:logout' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Logout</a>
+        <a href="{% url 'main:create_product' %}" class="block px-4 py-2 text-gray-700 text-black rounded">Add Product</a>
+        <button data-modal-target="crudModal" data-modal-toggle="crudModal" class="block px-4 py-2 text-gray-700 text-black rounded" onclick="showModal();">
+            Add New Product by AJAX
+        </button>
+        <a href="{% url 'main:logout' %}" class="block px-4 py-2 text-gray-700">Logout</a>
     </div>
 </nav>
-<!-- Script untuk men-toggle menu hamburger -->
+
+<!-- Script for toggling the hamburger menu -->
 <script>
     document.getElementById('menu-toggle').addEventListener('click', function () {
         const menu = document.getElementById('menu');

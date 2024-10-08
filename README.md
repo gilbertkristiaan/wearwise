@@ -13,6 +13,8 @@ Click Me:
 
 - :books: [Tugas 5](#Tugas-5)
 
+- :books: [Tugas 6](#Tugas-6)
+
 ## Tugas-2
  - Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
     
@@ -800,28 +802,163 @@ sequenceDiagram
 
          7. Membuat `navbar.html` di _folder_ `templates` di _root folder_ yang nanti akan di-_include_ di semua _page_, kecuali `login.html`
 
+## Tugas-6
+   1. Jelaskan manfaat dari penggunaan `JavaScript` dalam pengembangan aplikasi _web_!
 
+      JAWAB :
 
-
-
-
-
+      JavaScript memberikan banyak manfaat dalam pengembangan aplikasi web :
+      1. Membuat halaman web lebih interaktif dan dinamis
+      2. Memperbarui konten tanpa perlu memuat ulang halaman
+      3. Meningkatkan pengalaman pengguna dengan fitur-fitur seperti animasi, validasi data langsung, dan pengelolaan _cookies_
+      
+      Sifat lintas platformnya memungkinkan aplikasi _web_ diakses dari berbagai perangkat dan juga mendukung API yang memperluas fungsionalitas aplikasi. Dengan dukungan berbagai paradigma pemrograman, JavaScript memudahkan pengembang untuk menulis kode yang lebih fleksibel dan efisien.
    
+   2. Jelaskan fungsi dari penggunaan `await` ketika kita menggunakan `fetch()`! Apa yang akan terjadi jika kita tidak menggunakan `await`?
 
+      JAWAB : 
 
+      Fungsi dari penggunaan `await` saat menggunakan `fetch()` adalah menunggu hingga `promise` yang di-_return_ oleh `fetch()` selesai sebelum melanjutkan kode selanjutnya. Hal ini akan memungkinkan kita dapat menangani respons dari `fetch` secara sinkron dalam kode yang bersifat asinkron.
 
+      Jika kita tidak menggunakan `await`, `fetch()` akan langsung mengembalikan `promise` dan kode selanjutnya akan langsung dijalankan tanpa menunggu hasil dari `fetch` yang dapat menyebabkan pada saat kita mencoba memproses data sebelum _request_ selesai, dapat berpotensi menghasilkan _undefined_ atau kesalahan lain karena data yang diharapkan belum tersedia.
+   
+   3. Mengapa kita perlu menggunakan dekorator `csrf_exempt` pada _view_ yang akan digunakan untuk AJAX `POST`?
+   
+      JAWAB :
 
+      Dekorator `csrf_exempt` memungkinkan Django tidak perlu memeriksa keberadaan `csrf_token` pada `POST` _request_ yang dikirimkan ke _function_ pada _view_. Contoh kegunaannya adalah pada saat kita menggunakan AJAX `POST`, kita mungkin tidak mengirimkan token `CSRF` secara eksplisit. Dengan menambahkan `csrf_exempt`, Django tidak akan memblokir permintaan tersebut meskipun tidak ada token CSRF yang disertakan sehingga `request` bisa dijalankan tanpa masalah.
+   
+   4. Pada tutorial PBP minggu ini, pembersihan data _input_ pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di _frontend_ saja? 
+      
+      JAWAB :
 
+      Pembersihan data _input_ pengguna perlu dilakukan di _backend_, meskipun bisa dilakukan di _frontend_. Akan tetapi, pembersihan di _frontend_ saja tidak menjamin keamanan. Pengguna bisa memodifikasi atau melewati kode _frontend_ menggunakan alat seperti developer tools di device mereka sehingga data yang tidak aman tetap bisa dikirimkan ke _server_. Pembersihan di _frontend_, misalnya dengan menggunakan library seperti DOMPurify hanya efektif untuk data yang ditampilkan di `HTML`, namun tidak menjamin bahwa data yang dikirim melalui `API` atau format lain seperti `JSON/XML` sudah bersih. Oleh karena itu, `backend` tetap harus melakukan pembersihan dan validasi data untuk memastikan bahwa semua data yang masuk ke aplikasi sudah aman.
+   
+   5.  Jelaskan bagaimana cara kamu mengimplementasikan _checklist_ di atas secara _step-by-step_ (bukan hanya sekadar mengikuti _tutorial_)!
 
+         JAWAB :
 
+         1. Menambahkan _import_ berikut ke dalam kode views.py dan membuat _function_ `add_product_ajax`.
 
+            ```python
+            from django.views.decorators.csrf import csrf_exempt
+            from django.views.decorators.http import require_POST
+            ...
 
+            @csrf_exempt
+            @require_POST
+            def add_product_ajax(request):
+               name = strip_tags(request.POST.get("name"))
+               price = strip_tags(request.POST.get("price"))
+               description = strip_tags(request.POST.get("description"))
+               quantity = strip_tags(request.POST.get("quantity"))
 
+               user = request.user
 
+               new_product = Product(
+                  name=name, price=price,
+                  description=description,
+                  quantity=quantity, user=user
+               )
+               new_product.save()
+               return HttpResponse(b"CREATED", status=201)
+            ```
+         2. Menambahkan URL pattern ke urls.py di direktori main
+            ```python
+               path('create-product-ajax', add_product_ajax, name='add_product_ajax'),
+            ```
+         3. Menghapus `products = Product.objects.filter(user=request.user)` dan `'products': products`di views.py dan menggantinya dengan `data = Product.objects.filter(user=request.user)`
 
+         4. Menghapus kode ini di `main.html` saya
+               ```HTML
+               {% if products %}
+               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {% for product in products %}
+                     {% include 'card-product.html' with product=product %}
+                  {% endfor %}
+               </div>
+               {% else %}
+               <div class="flex flex-col items-center justify-center bg-white rounded-lg shadow-lg p-12 max-w-2xl mx-auto">
+               <div class="relative mb-8">
+                  <img src="{% static 'image/sad-tee.png' %}" alt="No products" class="w-64 h-64 floating-image glow-effect rounded-full">
+                  <div class="absolute top-0 left-0 w-full h-full bg-purple-500 opacity-20 rounded-full"></div>
+               </div>
+               <p class="text-center text-gray-600 text-lg mb-8">Belum ada data produk tambahan yang ditambahkan di Wearwise.</p>
+               </div>
+               {% endif %}
+               ```
+         5. Mengganti yang kode dihapus tadi dengan `<div id="product_cards"></div>`
+         
+         6. Menambahkan _script_ di `main.html`, berupa `getProducts()`dan `refreshProducts()` dan tetap menyesuiakan dengan desain `main.html` sebelumnya di `refreshProducts()`. 
 
+         7. Membuat _modal form_ penambahan produk di `main.html`
 
+         8. Menambahkan fungsi `showModal()` dan `hideModal()` di dalam tag _script_ di `main.html`
 
+         9. Menambahkan tombol "Add Product by AJAX" di `navbar.html` 
+            ```HTML
+            <button data-modal-target="crudModal" data-modal-toggle="crudModal" class="px-4 py-2 bg-purple-600 text-white rounded" onclick="showModal();">
+               Add New Product by AJAX
+               </button>
+            ```
+         
+         10. Menambahkan di _tag_ _script_ _function_ `add_product()` dan juga _event listener_ _function_ `addProduct()` 
 
+               ```JavaScript
+               function addProduct() {
+                  fetch("{% url 'main:add_product_ajax' %}", {
+                     method: "POST",
+                     body: new FormData(document.querySelector('#productForm')),
+                  })
+                  .then(response => refreshProducts());
 
+                  document.getElementById("productForm").reset();
+                  document.querySelector("[data-modal-toggle='crudModal']").click(); 
+                  return false;
+               }
 
+               document.getElementById("productForm").addEventListener("submit", (e) => {
+                     e.preventDefault();
+                     addProduct();
+               });
+               ```
+
+         11. Menambahkan `style` CSS di file `main.html` untuk _styling container product _
+
+         12. Menambahkan `from django.utils.html import strip_tags` agar mencegah XSS di `forms.py` dan `views.py`
+               ```python
+               ...
+               # views.py
+               @csrf_exempt
+               @require_POST
+               def add_product_ajax(request):
+                  name = strip_tags(request.POST.get("name"))
+                  price = strip_tags(request.POST.get("price"))
+                  description = strip_tags(request.POST.get("description"))
+                  quantity = strip_tags(request.POST.get("quantity"))
+
+                  user = request.user
+
+                  new_product = Product(
+                     name=name, price=price,
+                     description=description,
+                     quantity=quantity, user=user
+                  )
+                  new_product.save()
+                  return HttpResponse(b"CREATED", status=201)
+               ```
+
+         13. Menambahkan _function_ berikut di forms.py:
+               ```python
+               def clean_name(self):
+                  name = self.cleaned_data['name']
+                  return strip_tags(name)
+                  
+               def clean_description(self):
+                  description = self.cleaned_data['description']
+                  return strip_tags(description)
+               ```
+         
+         14. Menambahkan _script tag_    `<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script> ` di `block meta` pada _file_ `main.html`
+
+         15. Meng-_implement_ DOMPurify pada _const name_ dan _const description_ di _function_ `refreshProduct()`
